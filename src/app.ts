@@ -2,8 +2,11 @@ process.env['NODE_CONFIG_DIR'] = __dirname + '/configs';
 
 //import cookieParser from 'cookie-parser';
 import * as express from 'express'
-//import knex from '@databases';
-import { Routes } from './interfaces/routes.interface';
+
+import knex from '@database';
+import { Model } from 'objection';
+
+import { Routes } from '@interfaces/routes.interface';
 import errorMiddleware500 from './middleware/error500.middleware';
 import errorMiddleware404 from './middleware/error404.middleware';
 
@@ -17,7 +20,7 @@ class App {
     this.port = process.env.PORT || 3000;
     this.env = process.env.NODE_ENV || 'dev';
 
-    //this.connectToDatabase(); // Соединение с БД в будущем
+    this.connectToDatabase(); // Соединение с БД в будущем
     this.initializeTemplate(); // Инициализация шаблона
     this.initializeAssets()   // Инициализация статических файлов
     this.initializeMiddlewares(); // Инициализация middleware
@@ -37,9 +40,9 @@ class App {
     return this.app;
   }
 
-  /*private connectToDatabase() {
+  private connectToDatabase() {
     Model.knex(knex);
-  }*/
+  }
 
   // Указываем путь статических файлов
   private initializeAssets() {

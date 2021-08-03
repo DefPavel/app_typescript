@@ -18,6 +18,10 @@
             "@routes/*": ["routes/*"],
           }
     },
+    "plugins": [
+        { "transform": "typescript-transform-paths", "useRootDirs": true },
+        { "transform": "typescript-transform-paths", "useRootDirs": true, "afterDeclarations": true }
+    ],
     "include": [
         "src/**/*.ts", "src/**/*.json", ".env"
     ],

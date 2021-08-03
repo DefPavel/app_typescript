@@ -24,6 +24,7 @@ class IndexController {
             res.render('home/index', { title , users });
         }
         catch (error) {
+            res.status(500).json({message:error});
         }
     
     };
